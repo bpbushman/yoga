@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yoga/ui/widgets/text_field.dart';
+import 'package:yoga/ui/widgets/ui_helpers.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _username;
+  String _password;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +18,14 @@ class _LoginViewState extends State<LoginView> {
       borderRadius: BorderRadius.circular(12),
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.fromLTRB(16, 40, 0, 0),
+          padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
           child: Column(
             children: [
               Text(
                 'Welcome',
                 style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
               ),
+              mediumVertSpace(),
               Form(
                 key: _formKey,
                 child: Column(
@@ -34,19 +37,15 @@ class _LoginViewState extends State<LoginView> {
                           _username = value;
                           print(_username);
                         }),
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'password'),
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return 'password required';
-                        }
-                        return 'good';
-                      },
-                      onSaved: (String value) {
-                        _username = value;
-                        print(_username);
-                      },
-                    ),
+                    mediumVertSpace(),
+                    textField(
+                        label: 'password',
+                        message: 'password required',
+                        function: (String value) {
+                          _password = value;
+                          print(_password);
+                        }),
+                    mediumVertSpace(),
                     RaisedButton(
                         child: Text('Login'),
                         onPressed: () {
