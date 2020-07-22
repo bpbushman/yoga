@@ -10,6 +10,6 @@ class StartUpViewModel extends BaseViewModel {
   String get title => _title;
 
   Future navigateHome() async {
-    await _navigationService.navigateTo(Routes.homeView);
+    await _navigationService.navigateTo(Routes.loginView);
   }
 }
