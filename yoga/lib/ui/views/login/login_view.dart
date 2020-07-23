@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:yoga/ui/views/login/login_view_model.dart';
 import 'package:yoga/ui/widgets/text_field.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
 
@@ -14,7 +16,9 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return ViewModelBuilder.reactive(
+      viewModelBuilder: () => LoginViewModel(),
+      builder: (context, model, child) => ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Scaffold(
         body: GestureDetector(
@@ -73,13 +77,15 @@ class _LoginViewState extends State<LoginView> {
                       Text('Don\'t have an account? Register with:'),
                       mediumVertSpace(),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                        IconButton(icon: Icon(Icons.email), onPressed: () {}),
-                        mediumHorizontalSpace(),
-                        IconButton(
-                            icon: Icon(Icons.account_circle), onPressed: () {}),
-                      ])
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                                icon: Icon(Icons.email), onPressed: () {}),
+                            mediumHorizontalSpace(),
+                            IconButton(
+                                icon: Icon(Icons.account_circle),
+                                onPressed: () => model.signIn()),
+                          ])
                     ],
                   ),
                 ),
@@ -88,6 +94,7 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
       ),
+    ),
     );
   }
 }
