@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-import 'package:yoga/ui/views/login/login_view_model.dart';
 import 'package:yoga/ui/widgets/text_field.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
 
-class LoginView extends StatefulWidget {
+class SignupView extends StatefulWidget {
   @override
-  _LoginViewState createState() => _LoginViewState();
+  _SignupViewState createState() => _SignupViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignupViewState extends State<SignupView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _username;
   String _password;
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
-      viewModelBuilder: () => LoginViewModel(),
-      builder: (context, model, child) => ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Scaffold(
-          body: Padding(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: Scaffold(
+        body: Padding(
             padding: EdgeInsets.fromLTRB(24, 40, 24, 0),
             child: Column(
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Welcome',
+                    'Signup',
                     style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -73,12 +69,11 @@ class _LoginViewState extends State<LoginView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                                icon: Icon(Icons.email),
-                                onPressed: () => model.navigateTosignup),
+                                icon: Icon(Icons.email), onPressed:() {}),
                             mediumHorizontalSpace(),
                             IconButton(
                                 icon: Icon(Icons.account_circle),
-                                onPressed: () => model.signIn()),
+                                onPressed: () {}),
                           ])
                     ],
                   ),
@@ -86,7 +81,6 @@ class _LoginViewState extends State<LoginView> {
               ],
             ),
           ),
-        ),
       ),
     );
   }

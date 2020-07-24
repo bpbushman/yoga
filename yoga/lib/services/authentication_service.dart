@@ -18,6 +18,7 @@ class AuthenticationService {
     if (isSignedIn) {
       print('user signed in!');
       user = await _firebaseAuth.currentUser();
+      print(user);
     } else {
   //or create a new user that can be passed into a current user object
       final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
@@ -39,7 +40,7 @@ class AuthenticationService {
     _currentUser = User(
         name: user.displayName,
         uid: user.uid);
-    print(_currentUser.name);
+    print(currentUser);
     print(_currentUser.uid);
   }
 }
