@@ -74,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
                           children: [
                             IconButton(
                                 icon: Icon(Icons.email),
-                                onPressed: () => model.navigateTosignup),
+                                onPressed: () => model.navigateTosignup()),
                             mediumHorizontalSpace(),
                             IconButton(
                                 icon: Icon(Icons.account_circle),
