@@ -13,6 +13,16 @@ class _SignupViewState extends State<SignupView> {
   String _password;
   String _email;
 
+  formDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      fillColor: Colors.grey[100],
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.black)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
@@ -37,13 +47,7 @@ class _SignupViewState extends State<SignupView> {
                   child: Column(
                     children: [
                       TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'email',
-                          fillColor: Colors.grey[100],
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.black)),
-                        ),
+                        decoration: formDecoration('email'),
                         validator: (String value) {
                           if (value.isEmpty) {
                             return 'email is required';
@@ -54,13 +58,7 @@ class _SignupViewState extends State<SignupView> {
                       ),
                       mediumVertSpace(),
                       TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'password',
-                          fillColor: Colors.grey[100],
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.black)),
-                        ),
+                        decoration: formDecoration('password'),
                         validator: (String value) {
                           if (value.isEmpty) {
                             return 'password is required';
@@ -73,14 +71,11 @@ class _SignupViewState extends State<SignupView> {
                       RaisedButton(
                           child: Text('submit'),
                           onPressed: () {
-                            print(_email);
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              print('$_email from if');
                               model.signUp(_email, _password);
                               return null;
                             }
-                            print('$_email from else');
                           }),
                     ],
                   ),
