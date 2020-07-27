@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yoga/ui/views/signup/signup_view_model.dart';
-import 'package:yoga/ui/widgets/text_field.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
 
 class SignupView extends StatefulWidget {
@@ -17,57 +16,80 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
-        builder: (context, model, child) => ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Scaffold(
-                body: Padding(
-                  padding: EdgeInsets.fromLTRB(24, 40, 24, 0),
+      viewModelBuilder: () => SignupViewModel(),
+      builder: (context, model, child) => ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Scaffold(
+          body: Padding(
+            padding: EdgeInsets.fromLTRB(24, 40, 24, 0),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Signup',
+                    style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                largeVertSpace(),
+                Form(
+                  key: _formKey,
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Signup',
-                          style: TextStyle(
-                              fontSize: 48, fontWeight: FontWeight.bold),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'email',
+                          fillColor: Colors.grey[100],
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.black)),
                         ),
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'email is required';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _email = value,
+                      ),
+                      mediumVertSpace(),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'password',
+                          fillColor: Colors.grey[100],
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.black)),
+                        ),
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'password is required';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _password = value,
                       ),
                       largeVertSpace(),
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            textField(
-                                label: 'email',
-                                message: 'email required',
-                                function: (String value) {
-                                  _email = value;
-                                }),
-                            mediumVertSpace(),
-                            textField(
-                                label: 'password',
-                                message: 'password required',
-                                function: (String value) {
-                                  _password = value;
-                                }),
-                            largeVertSpace(),
-                            RaisedButton(
-                                child: Text('submit'),
-                                onPressed: () {
-                                  if (!_formKey.currentState.validate()) {
-                                    return null;
-                                  }
-                                  _formKey.currentState.save();
-                                  model.signUp(email: _email, password: _password);
-                                }),
-                          ],
-                        ),
-                      ),
+                      RaisedButton(
+                          child: Text('submit'),
+                          onPressed: () {
+                            print(_email);
+                            if (_formKey.currentState.validate()) {
+                              _formKey.currentState.save();
+                              print('$_email from if');
+                              model.signUp(_email, _password);
+                              return null;
+                            }
+                            print('$_email from else');
+                          }),
                     ],
                   ),
                 ),
-              ),
+              ],
             ),
-        viewModelBuilder: () => SignupViewModel());
+          ),
+        ),
+      ),
+    );
   }
 }

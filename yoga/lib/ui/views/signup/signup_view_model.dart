@@ -13,6 +13,7 @@ class SignupViewModel extends BaseViewModel {
   
 
   Future signUp(String email, String password) async {
+    print('hello from signup');
     var result = await _authenticationService.emailSignup(
         email: email, password: password);
     if (result is bool) {
