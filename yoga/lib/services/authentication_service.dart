@@ -33,4 +33,8 @@ class AuthenticationService {
     }
   }
 
+  void signout() {
+    _firebaseAuth.signOut();
+  }
+
 }

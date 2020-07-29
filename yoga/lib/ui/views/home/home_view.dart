@@ -26,6 +26,14 @@ class HomeView extends StatelessWidget {
       builder: (context, model, child) => ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Scaffold(
+          appBar: AppBar(
+            elevation: 0.0,
+            leading: IconButton(
+              icon: Icon(Icons.exit_to_app, color: Colors.black),
+              onPressed: () => model.signOut(),
+            ),
+            backgroundColor: Colors.white,
+          ),
           bottomNavigationBar: Container(
             height: 48,
             child: BottomNavigationBar(
