@@ -8,10 +8,11 @@ class StartUpViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
 
-  String _title = 'StartUp view';
+  String _title = 'Welcome';
   String get title => _title;
 
   Future handleStartup() async {
+    print('handleStartup executed');
     var isUserLoggedIn = await _authenticationService.isUserLoggedIn();
     if(isUserLoggedIn) {
       _navigationService.navigateTo(Routes.homeView);
