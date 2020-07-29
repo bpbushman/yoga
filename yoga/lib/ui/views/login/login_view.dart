@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yoga/ui/views/login/login_view_model.dart';
-import 'package:yoga/ui/widgets/text_field.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
 
 class LoginView extends StatefulWidget {
@@ -11,8 +10,18 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _username;
+  String _email;
   String _password;
+
+  formDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      fillColor: Colors.grey[100],
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.black)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,21 +46,27 @@ class _LoginViewState extends State<LoginView> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      textField(
-                          label: 'username',
-                          message: 'username required',
-                          function: (String value) {
-                            _username = value;
-                            print(_username);
-                          }),
+                      TextFormField(
+                        decoration: formDecoration('email'),
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'email is required';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _email = value,
+                      ),
                       mediumVertSpace(),
-                      textField(
-                          label: 'password',
-                          message: 'password required',
-                          function: (String value) {
-                            _password = value;
-                            print(_password);
-                          }),
+                      TextFormField(
+                        decoration: formDecoration('password'),
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'password is required';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _password = value,
+                      ),
                       mediumVertSpace(),
                       GestureDetector(
                         child: Text('Forgot Password',
@@ -61,10 +76,10 @@ class _LoginViewState extends State<LoginView> {
                       RaisedButton(
                           child: Text('Login'),
                           onPressed: () {
-                            if (!_formKey.currentState.validate()) {
-                              return;
+                            if(_formKey.currentState.validate()) {
+                              _formKey.currentState.save();
+                              model.login(email: _email, password: _password);
                             }
-                            _formKey.currentState.save();
                           }),
                       largeVertSpace(),
                       Text('Don\'t have an account? Register with:'),
