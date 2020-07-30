@@ -12,10 +12,10 @@ class SignupViewModel extends BaseViewModel {
 
   
 
-  Future signUp(String email, String password) async {
+  Future signUp(String email, String password, String username) async {
     print('hello from signup');
     var result = await _authenticationService.emailSignup(
-        email: email, password: password);
+        username: username, email: email, password: password);
     if (result is bool) {
       if (result) {
         _navigationService.navigateTo(Routes.homeView);

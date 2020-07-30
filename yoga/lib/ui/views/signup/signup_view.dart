@@ -12,6 +12,7 @@ class _SignupViewState extends State<SignupView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _password;
   String _email;
+  String _username;
 
   formDecoration(String label) {
     return InputDecoration(
@@ -47,6 +48,17 @@ class _SignupViewState extends State<SignupView> {
                   child: Column(
                     children: [
                       TextFormField(
+                        decoration: formDecoration('user name'),
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'user name is required';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _username = value,
+                      ),
+                      mediumVertSpace(),
+                      TextFormField(
                         decoration: formDecoration('email'),
                         validator: (String value) {
                           if (value.isEmpty) {
@@ -73,7 +85,8 @@ class _SignupViewState extends State<SignupView> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              model.signUp(_email, _password);
+                              model.signUp(_email, _password, _username);
+                              print(_username);
                               return null;
                             }
                           }),

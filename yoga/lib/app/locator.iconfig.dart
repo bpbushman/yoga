@@ -7,6 +7,7 @@
 import 'package:yoga/services/authentication_service.dart';
 import 'package:yoga/services/third_party_services_module.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:yoga/services/firestore_service.dart';
 import 'package:get_it/get_it.dart';
 
 void $initGetIt(GetIt g, {String environment}) {
@@ -14,6 +15,7 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerLazySingleton<AuthenticationService>(() => AuthenticationService());
   g.registerLazySingleton<DialogService>(
       () => thirdPartyServicesModule.dialogService);
+  g.registerLazySingleton<FirestoreService>(() => FirestoreService());
   g.registerLazySingleton<NavigationService>(
       () => thirdPartyServicesModule.navigationService);
   g.registerLazySingleton<SnackbarService>(
