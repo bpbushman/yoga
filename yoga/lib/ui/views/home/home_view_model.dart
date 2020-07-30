@@ -11,7 +11,7 @@ class HomeViewModel extends IndexTrackingViewModel {
   
   String _title = 'Home View';
   String get title => _title;
-
+// User get currentUser => _authenticationService.currentuser;
   User _currentUser;
   String get username => _currentUser.username;
 

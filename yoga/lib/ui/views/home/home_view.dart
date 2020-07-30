@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:yoga/ui/views/schedule/schedule_view.dart';
 
 import 'home_view_model.dart';
 
@@ -7,13 +8,13 @@ class HomeView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return DummyOne();
+        return ScheduleView();
       case 1:
         return DummyTwo();
       case 2:
         return DummyThree();
       default:
-        return DummyOne();
+        return ScheduleView();
     }
   }
 
