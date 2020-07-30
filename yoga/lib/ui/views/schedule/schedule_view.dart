@@ -8,7 +8,7 @@ class ScheduleView extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return ViewModelBuilder.reactive(
-      onModelReady: (model) => model.addClassesToFirebase(),
+      //onModelReady: (model) => model.addClassesToFirebase(),
       disposeViewModel: false,
       viewModelBuilder: () => ScheduleViewModel(),
       builder: (context, model, child) => Center(child: Text('Schedule page'),)
