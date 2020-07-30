@@ -7,12 +7,21 @@ import 'package:yoga/services/firestore_service.dart';
 
 @lazySingleton
 class AuthenticationService {
-  //final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirestoreService _firestoreService = locator<FirestoreService>();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  User _currentUser;
+  User get currentUser => _currentUser;
+
+  Future _populateCurrentUser(FirebaseUser user) async {
+    if(user != null) {
+      _currentUser = await _firestoreService.getUser(user.uid);
+    }
+  }
+
   Future<bool> isUserLoggedIn() async {
     var user = await _firebaseAuth.currentUser();
+    await _populateCurrentUser(user);
     return user != null;
   }
 
@@ -34,9 +43,10 @@ class AuthenticationService {
 
   Future loginWithEmail({String email, String password}) async {
     try {
-      var user = await _firebaseAuth
+      var authResult = await _firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password);
-      return user != null;
+      await _populateCurrentUser(authResult.user);
+      return authResult.user != null;
     } catch (e) {
       return e.message;
     }

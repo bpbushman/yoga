@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     print('hello from home!');
     return ViewModelBuilder.reactive(
-      //disposeViewModel: false,
+      disposeViewModel: false,
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => ClipRRect(
         borderRadius: BorderRadius.circular(12),
