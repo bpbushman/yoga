@@ -21,12 +21,14 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     print('hello from home!');
     return ViewModelBuilder.reactive(
+      onModelReady: (model) => model.currentUserData(),
       disposeViewModel: false,
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Scaffold(
           appBar: AppBar(
+           // title: Text(model.username, style: TextStyle(color: Colors.black)),
             elevation: 0.0,
             leading: IconButton(
               icon: Icon(Icons.exit_to_app, color: Colors.black),

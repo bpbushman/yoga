@@ -2,6 +2,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:yoga/app/locator.dart';
 import 'package:yoga/app/router.gr.dart';
+import 'package:yoga/models/user.dart';
 import 'package:yoga/services/authentication_service.dart';
 
 class HomeViewModel extends IndexTrackingViewModel {
@@ -10,6 +11,13 @@ class HomeViewModel extends IndexTrackingViewModel {
   
   String _title = 'Home View';
   String get title => _title;
+
+  User _currentUser;
+  String get username => _currentUser.username;
+
+  void currentUserData() {
+    _currentUser = _authenticationService.currentUser;
+  }
 
   Future signOut() async {
     _authenticationService.signout();
