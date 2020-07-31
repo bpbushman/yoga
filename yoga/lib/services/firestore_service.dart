@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:yoga/models/schedule.dart';
@@ -7,6 +9,8 @@ import 'package:yoga/models/user.dart';
 class FirestoreService {
   final CollectionReference _userRef = Firestore.instance.collection("users");
   final CollectionReference _classRef = Firestore.instance.collection("classes");
+  final StreamController<List<Activity>> _classController = 
+    StreamController<List<Activity>>.broadcast();
 
   Future createUser(User user) async {
     try {
@@ -34,5 +38,19 @@ class FirestoreService {
     } catch (e) {
       return e.toString();
     }
+  }
+
+  Stream listenToClasses() {
+    _classRef.snapshots().listen((classSnapshot) {
+      if(classSnapshot.documents.isNotEmpty) {
+        var activities = classSnapshot
+          .documents
+          .map((snapshot) => Activity.fromJson(snapshot.data))
+          .where((item) => item.title != null)
+          .toList();
+        _classController.add(activities);
+      }
+     });
+    return _classController.stream;
   }
  }

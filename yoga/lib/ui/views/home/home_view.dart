@@ -29,13 +29,12 @@ class HomeView extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Scaffold(
           appBar: AppBar(
-           // title: Text(model.username, style: TextStyle(color: Colors.black)),
             elevation: 0.0,
             leading: IconButton(
-              icon: Icon(Icons.exit_to_app, color: Colors.black),
+              icon: Icon(Icons.exit_to_app, color: Colors.black,size: 18,),
               onPressed: () => model.signOut(),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey[200],
           ),
           bottomNavigationBar: Container(
             height: 48,
@@ -62,6 +61,7 @@ class HomeView extends StatelessWidget {
               ],
             ),
           ),
+          backgroundColor: Colors.grey[200],
           body: getViewForIndex(model.currentIndex),
         ),
       ),
