@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:yoga/app/locator.dart';
 import 'package:yoga/models/schedule.dart';
 import 'package:yoga/ui/views/schedule/schedule_view_model.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
@@ -13,10 +14,12 @@ class ScheduleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
+    print('schedule view built');
+    return ViewModelBuilder<ScheduleViewModel>.reactive(
       onModelReady: (model) => model.listenToSchedule(),
       disposeViewModel: false,
-      viewModelBuilder: () => ScheduleViewModel(),
+      viewModelBuilder: () => locator<ScheduleViewModel>(),
+      initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => model.isLoading
           ? loading()
           : Padding(

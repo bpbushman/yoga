@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
     print('hello from home!');
     return ViewModelBuilder.reactive(
       onModelReady: (model) => model.currentUserData(),
-      disposeViewModel: false,
+      //disposeViewModel: false,
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => ClipRRect(
         borderRadius: BorderRadius.circular(12),

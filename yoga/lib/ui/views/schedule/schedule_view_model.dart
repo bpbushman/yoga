@@ -3,7 +3,9 @@ import 'package:stacked/stacked.dart';
 import 'package:yoga/app/locator.dart';
 import 'package:yoga/models/schedule.dart';
 import 'package:yoga/services/firestore_service.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class ScheduleViewModel extends BaseViewModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   //final DialogService _dialogService = locator<DialogService>();
@@ -19,6 +21,7 @@ class ScheduleViewModel extends BaseViewModel {
       List<Activity> updatedClasses = classData;
       if(updatedClasses != null && updatedClasses.length > 0) {
         _classes = updatedClasses;
+        //_classes.
         isLoading = false;
         notifyListeners();
       }
