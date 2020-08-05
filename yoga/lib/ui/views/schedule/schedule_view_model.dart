@@ -21,7 +21,6 @@ class ScheduleViewModel extends BaseViewModel {
       List<Activity> updatedClasses = classData;
       if(updatedClasses != null && updatedClasses.length > 0) {
         _classes = updatedClasses;
-        //_classes.
         isLoading = false;
         notifyListeners();
       }
