@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yoga/app/locator.dart';
-import 'package:yoga/models/schedule.dart';
+import 'package:yoga/ui/smart_widgets/schedule_tiles/activity_tile.dart';
 import 'package:yoga/ui/views/schedule/schedule_view_model.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
 
@@ -26,10 +26,14 @@ class ScheduleView extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
               child: Column(
                 children: [
-                  Align(alignment: Alignment.centerLeft,
-                    child: Text(' Schedule', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Schedule',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
                   ),
-                  
                   smallVertSpace(),
                   Card(
                     elevation: 2.5,
@@ -50,23 +54,6 @@ class ScheduleView extends StatelessWidget {
                 ],
               ),
             ),
-    );
-  }
-}
-
-class ActivityTile extends StatelessWidget {
-  final Activity activity;
-  ActivityTile({this.activity});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      child: ListTile(
-        leading: Text(activity.time.toString()),
-        title: Text(activity.title),
-        subtitle: Text(activity.description),
-      ),
     );
   }
 }
