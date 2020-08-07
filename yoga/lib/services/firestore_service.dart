@@ -9,8 +9,19 @@ import 'package:yoga/models/user.dart';
 class FirestoreService {
   final CollectionReference _userRef = Firestore.instance.collection("users");
   final CollectionReference _classRef = Firestore.instance.collection("classes");
+  final CollectionReference _favRef = Firestore.instance.collection("favorites");
   final StreamController<List<Activity>> _classController = 
-    StreamController<List<Activity>>.broadcast();
+      StreamController<List<Activity>>.broadcast();
+
+  Future setFavorite(String uid, String activity) async {
+    try {
+      await _favRef
+        .document(uid)
+        .setData({'favoriteClass' : activity});
+    } catch(e) {
+      return e.message;
+    }
+  }
 
   Future createUser(User user) async {
     try {

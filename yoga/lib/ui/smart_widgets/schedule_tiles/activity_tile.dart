@@ -97,7 +97,7 @@ class ActivityTile extends StatelessWidget {
                       smallVertSpace(),
                       subtitlerow(
                           model.isLiked,
-                          () => model.toggleLike(),
+                          () => model.toggleLike(activity.title),
                           model.alarm,
                           () => model.toggleAlarm(),
                           model.isGoing,
