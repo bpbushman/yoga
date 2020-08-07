@@ -23,7 +23,7 @@ class ScheduleView extends StatelessWidget {
       builder: (context, model, child) => model.isLoading
           ? loading()
           : Padding(
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
               child: Column(
                 children: [
                   Align(
@@ -36,11 +36,11 @@ class ScheduleView extends StatelessWidget {
                   ),
                   smallVertSpace(),
                   Card(
-                    elevation: 2.5,
+                    elevation: 3.0,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(16)),
                     child: SizedBox(
-                      height: 306,
+                      height: 322,
                       child: Expanded(
                         child: ListView.builder(
                             itemCount: model.classes.length,

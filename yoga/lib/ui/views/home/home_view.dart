@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
       //disposeViewModel: false,
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) => ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
