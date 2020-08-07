@@ -40,7 +40,7 @@ class ScheduleView extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                     child: SizedBox(
-                      height: 322,
+                      height: 272,
                       child: Expanded(
                         child: ListView.builder(
                             itemCount: model.classes.length,

@@ -1,10 +1,10 @@
 import 'package:stacked/stacked.dart';
-//import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:yoga/app/locator.dart';
 
 
-//@lazySingleton
+@lazySingleton
 class ActivityTileModel extends BaseViewModel {
   final SnackbarService _snackbarService = locator<SnackbarService>();
   bool isLiked = false;
