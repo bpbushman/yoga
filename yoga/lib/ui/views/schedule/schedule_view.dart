@@ -22,8 +22,9 @@ class ScheduleView extends StatelessWidget {
       initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => model.isLoading
           ? loading()
-          : Padding(
-              padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
+          : SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(24, 0, 24, 8),
               child: Column(
                 children: [
                   Align(
@@ -40,20 +41,30 @@ class ScheduleView extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                     child: SizedBox(
-                      height: 272,
+                      height: 344,
                       child: Expanded(
                         child: ListView.builder(
-                            itemCount: model.classes.length,
-                            itemBuilder: (context, index) {
-                              return ActivityTile(
-                                  activity: model.classes[index]);
-                            }),
+                          itemCount: model.classes.length,
+                          itemBuilder: (context, index) =>
+                              ActivityTile(activity: model.classes[index]),
+                        ),
                       ),
                     ),
                   ),
+                  smallVertSpace(),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Make an appointment',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
+                  ),
+                  largeVertSpace(),
                 ],
               ),
             ),
+          ),
     );
   }
 }
