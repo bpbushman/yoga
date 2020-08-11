@@ -24,7 +24,7 @@ class ScheduleView extends StatelessWidget {
           ? loading()
           : SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(24, 0, 24, 8),
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Column(
                 children: [
                   Align(

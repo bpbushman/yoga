@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yoga/models/schedule.dart';
@@ -55,13 +56,13 @@ class ActivityTile extends StatelessWidget {
       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         GestureDetector(
-          child: goingIcon(isGoing),
-          onTap: goingFunction,
+          child: likeIcon(isLiked),
+          onTap: likeFunction,
         ),
         largeHorizontalSpace(),
         GestureDetector(
-          child: likeIcon(isLiked),
-          onTap: likeFunction,
+          child: goingIcon(isGoing),
+          onTap: goingFunction,
         ),
         largeHorizontalSpace(),
         GestureDetector(
@@ -72,6 +73,12 @@ class ActivityTile extends StatelessWidget {
     );
   }
 
+  String timefromTimeStamp(Timestamp timestamp, context) {
+    var dateTime = timestamp.toDate();
+    var time = TimeOfDay.fromDateTime(dateTime);
+    return time.format(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
@@ -79,7 +86,7 @@ class ActivityTile extends StatelessWidget {
         builder: (context, model, child) => Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: ListTile(
-                  leading: Text(activity.time.toString()),
+                  leading: Text(timefromTimeStamp(activity.timeStamp, context)),
                   title: Text(
                     activity.title,
                     style: TextStyle(fontSize: 16),
