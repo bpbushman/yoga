@@ -33,6 +33,7 @@ class ScheduleViewModel extends BaseViewModel {
 
 
 
+
 /*
 List<Activity> classList = [
     Activity(title: 'yoga class', description: 'class for the masses', time: 0800, days:['monday', 'wednesday']),

@@ -34,7 +34,7 @@ dependencies:
   #navigation
   auto_route: 
   stacked_services: 
-  #inversion of controlle, dependencies
+  #inversion of control, dependencies
   get_it:
   injectable: 
  
