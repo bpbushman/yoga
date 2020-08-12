@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yoga/models/schedule.dart';
 import 'package:yoga/ui/smart_widgets/schedule_tiles/activity_tile_model.dart';
+import 'package:yoga/ui/widgets/strings.dart';
 import 'package:yoga/ui/widgets/ui_helpers.dart';
 
 // ignore: must_be_immutable
@@ -86,35 +87,25 @@ class ActivityTile extends StatelessWidget {
         builder: (context, model, child) => Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: ListTile(
-                  leading: Text(timefromTimeStamp(activity.timeStamp, context)),
-                  title: Text(
-                    activity.title,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  subtitle: Column(
-                    children: [
-                      smallVertSpace(),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          activity.description,
-                          //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                        ),
-                      ),
-                      smallVertSpace(),
-                      subtitlerow(
-                          model.isLiked,
-                          () => model.toggleLike(activity.title),
-                          model.alarm,
-                          () => model.toggleAlarm(),
-                          model.isGoing,
-                          () => model.toggleGoing()),
-                      smallVertSpace(),
-                      Divider(height: 0.0),
-                    ],
-                  )
-                  //trailing: Icon(Icons.arrow_upward),
-                  ),
+                leading:timeText(timefromTimeStamp(activity.timeStamp, context)),  
+                title: titleText(activity.title),
+                subtitle: Column(
+                  children: [
+                    smallVertSpace(),
+                    descriptionText(activity.description),
+                    smallVertSpace(),
+                    subtitlerow(
+                        model.isLiked,
+                        () => model.toggleLike(),
+                        model.alarm,
+                        () => model.toggleAlarm(),
+                        model.isGoing,
+                        () => model.toggleGoing()),
+                    smallVertSpace(),
+                    Divider(height: 0.0),
+                  ],
+                ),
+              ),
             ),
         viewModelBuilder: () => ActivityTileModel());
   }
