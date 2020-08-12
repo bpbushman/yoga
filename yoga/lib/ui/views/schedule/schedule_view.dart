@@ -18,69 +18,74 @@ class ScheduleView extends StatelessWidget {
   Widget build(BuildContext context) {
     print('schedule view built');
     return ViewModelBuilder<ScheduleViewModel>.reactive(
-      onModelReady: (model) => model.listenToSchedule(),
-      disposeViewModel: false,
-      viewModelBuilder: () => locator<ScheduleViewModel>(),
-      initialiseSpecialViewModelsOnce: true,
-      builder: (context, model, child) => model.isLoading
-          ? loading()
-          : SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Schedule',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ),
-                    smallVertSpace(),
-                    Card(
-                      elevation: 3.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      child: SizedBox(
-                        height: 344,
-                        child: Expanded(
-                          child: ListView.builder(
-                            itemCount: model.classes.length,
-                            itemBuilder: (context, index) =>
-                                ActivityTile(activity: model.classes[index]),
+        onModelReady: (model) => model.listenToSchedule(),
+        disposeViewModel: false,
+        viewModelBuilder: () => locator<ScheduleViewModel>(),
+        initialiseSpecialViewModelsOnce: true,
+        builder: (context, model, child) => model.isLoading
+            ? loading()
+            : Scrollbar(
+                radius: Radius.circular(16),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Column(
+                      children: [
+                        largeVertSpace(),
+                        Align(
+                          //alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Schedule',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24),
                           ),
                         ),
-                      ),
-                    ),
-                    smallVertSpace(),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Make an appointment',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ),
-                    
-                    Container(
-                      height: 172,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            AppointmentTile(),
-                            AppointmentTile(),
-                            AppointmentTile(),
-                            AppointmentTile(),
-                          ],
+                        mediumVertSpace(),
+                        Card(
+                          margin: EdgeInsets.fromLTRB(24, 0, 24, 0),
+                          elevation: 3.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          child: SizedBox(
+                            height: 368,
+                            child: Expanded(
+                              child: ListView.builder(
+                                itemCount: model.classes.length,
+                                itemBuilder: (context, index) => ActivityTile(
+                                    activity: model.classes[index]),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                        mediumVertSpace(),
+                        Align(
+                          //alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Make an appointment',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24),
+                          ),
+                        ),
+                        mediumVertSpace(),
+                        Container(
+                          height: 152,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                AppointmentTile(),
+                                AppointmentTile(),
+                                AppointmentTile(),
+                                AppointmentTile(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        smallVertSpace(),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-    );
+              ));
   }
 }

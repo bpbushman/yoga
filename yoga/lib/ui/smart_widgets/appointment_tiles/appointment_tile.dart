@@ -4,7 +4,7 @@ class AppointmentTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+      padding: EdgeInsets.fromLTRB(6, 0, 6, 0),
       child: Container(
         height: 152,
         width: 160,
