@@ -49,15 +49,15 @@ class HomeView extends StatelessWidget {
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  title: Text('Home'),
+                  label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.notifications),
-                  title: Text('notifications'),
+                  label: 'notifications',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.list),
-                  title: Text('feed'),
+                  label: 'feed',
                 ),
               ],
             ),

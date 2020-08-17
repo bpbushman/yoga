@@ -27,7 +27,7 @@ class Routes {
   };
 }
 
-class Router extends RouterBase {
+class MyRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[

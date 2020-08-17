@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 const String scheduleString = "Schedule";
 const String appointmentString = "Make an Appointment";
+const String reviewsString = "Reviews";
 
 Text scrollingTitle(String title) {
   return Text(title,

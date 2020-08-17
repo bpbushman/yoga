@@ -20,12 +20,14 @@ class ScheduleView extends StatelessWidget {
     print('schedule view built');
     return ViewModelBuilder<ScheduleViewModel>.reactive(
       onModelReady: (model) => model.listenToSchedule(),
+      fireOnModelReadyOnce: true,
       disposeViewModel: false,
       viewModelBuilder: () => locator<ScheduleViewModel>(),
-      initialiseSpecialViewModelsOnce: true,
+      //initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => model.isLoading
           ? loading()
           : Scrollbar(
+            key: PageStorageKey('storage-key'),
               radius: Radius.circular(16),
               child: SingleChildScrollView(
                 child: Column(
@@ -66,6 +68,8 @@ class ScheduleView extends StatelessWidget {
                       ),
                     ),
                     mediumVertSpace(),
+                    scrollingTitle(reviewsString),
+                    mediumVertSpace()
                   ],
                 ),
               ),
